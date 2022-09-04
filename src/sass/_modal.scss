@@ -1,0 +1,103 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.modal {
+    background:  center / cover no-repeat url('../images/modal-background.png');
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 9;
+}
+.form-button {
+    height: $baseSize*11;
+    color: $colorSecondary;
+    background: $colorPrimary;
+    border-radius: $borderRadiusMain;
+    padding: 0 $indent*4 0 $indent*4;
+    border: none;
+    font-size: 18px;
+}
+.user-form {
+    background: $colorSecondary;
+    border-radius: $borderRadiusMain;
+    box-shadow: $box-shadow;
+    padding: $baseSize*10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & * {
+        width: 100%;
+    }
+    &__title {
+        text-align: center;
+        font-size: $font-sizeMain*2;
+        color: $TextSecondColor;
+        font-weight: 700;
+        line-height: $font-sizeMain*2;
+    }
+    &__description {
+        text-align: center;
+        margin-top: $indent;
+        color: $TextSecondColor;
+        font-weight: 400;
+        font-size: $font-sizeMain;
+        line-height: $font-sizeMain;
+    }
+    &__input-wrapper {
+        margin: $indent*2 0;
+        position: relative;
+        width: 100%;
+    }
+    &__input-wrapper::before {
+        content: "";
+        width: $baseSize*4;
+        height: $baseSize*4;
+        background: url(../images/user-icon.svg);
+        position: absolute;
+        top: 50%;
+        left: 16px;
+        transform: translate(0, -50%);
+        z-index: 2;
+    }
+    &__input-wrapper::after {
+        content: "";
+        width: $baseSize*2;
+        height: $baseSize*2;
+        background: center / contain url(../images/clear.svg);
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        transform: translate(0, -50%);
+        z-index: 2;
+        cursor: pointer;
+    }
+    &__input-label {
+        transform-origin: top left;
+        pointer-events: none;
+        position: absolute;
+        color: rgba(110, 113, 145, 1);
+        left: 60px;
+        top: 50%;
+        transform: translate(0, -50%);
+        z-index: 2;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        opacity: 1;
+    }
+    &__input {
+        @include inputBasic;
+        width: 100%;
+        padding: 0 $baseSize*5 0 $baseSize*10; 
+        position: relative;
+    }
+    &__input_focus {
+        border: 2px solid $colorPrimary;
+    }
+    &__input-label_active {
+        transform: translate(0, -100%) scale(0.7);
+    }
+}

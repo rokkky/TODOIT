@@ -1,0 +1,23 @@
+@use 'variables' as *;
+
+@mixin inputBasic {
+    font-size: $font-sizeMain;
+    width: 100%;
+    font-weight: 400;
+    color: rgba(20, 20, 43, 1);
+    height: $baseSize*11;
+    border-radius: $borderRadiusMain;
+    background-color: rgba(239, 240, 246, 1);
+    border: 0px solid $colorPrimary;
+}
+
+@mixin crossing {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    right: 70%;
+    background: $colorFocus;
+    height: 3px;
+    transition: left 0.4s ease-in-out, right 0.5s ease-in-out, opacity 0.3s ease-in-out 
+}

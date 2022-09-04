@@ -1,0 +1,18 @@
+@use 'variables' as *;
+@use 'header';
+@use 'modal';
+@use 'list';
+@use 'task';
+@use 'taskForm';
+@use 'mixins';
+
+* {
+    box-sizing: border-box;
+    font-family: Poppins;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: $colorBg;
+}

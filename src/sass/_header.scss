@@ -1,0 +1,36 @@
+@use 'variables' as *;
+
+.header {
+    padding: $indent $baseSize*10;
+    background-color: $colorSecondary;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+    &__main-info {
+        display: flex;
+        align-items: flex-start;
+    }
+    &__title {
+        font-size: $font-sizeMain * 3;
+        font-weight: 500;
+        line-height: 40px;
+        letter-spacing: -2px;
+        color: $colorPrimary;
+    }
+    &__link {
+        font-size: $font-sizeMain;
+        font-weight: 400;
+        color: $subColor;
+        text-decoration: none;
+    }
+    &__profile {
+        display: flex;
+    }
+    &__user {
+        color: $colorPrimary;
+        font-size: $font-sizeMain;
+    }
+}
+

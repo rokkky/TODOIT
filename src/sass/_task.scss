@@ -1,0 +1,67 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.task-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: $indent;
+}
+
+.task-checkbox {    
+    width: $baseSize * 5.5;
+    height: $baseSize * 5.5;
+    border-radius: $borderRadiusMain;
+    background: $subColor;
+    margin-right: $indent;
+    transition: background 0.3s ease-in-out;
+    &:hover {
+        background: $colorPrimary;
+    }
+    &:hover + .task{
+        color: $TextSecondColor;
+    }
+    &:hover + .task::after{
+        left: 0;
+        right: 0;
+        opacity: 1;
+    } 
+} 
+
+.task-checkbox_completed {
+    background: $colorPrimary center / 50% no-repeat url("../images/check-icon.svg");
+    &:hover {
+        background: $colorFocus center / 50% no-repeat url("../images/check-icon.svg");
+    }
+    &:hover + .task_completed::after {
+        opacity: 0; 
+        left: 30%;
+        right: 70%;
+    }
+    &:hover + .task_completed {
+        color: $colorSecondary;
+    }
+}
+
+.task {
+    position: relative;
+    list-style: none;
+    font-size: $font-sizeMain * 1.5;
+    color: $colorSecondary;
+    transition: color 0.3s ease-in-out;
+    &::after {
+        @include crossing;
+        opacity: 0;   
+    }
+    &_completed{
+        color: $TextSecondColor;
+    }
+    &_completed::after{
+        @include crossing;
+        left: 0;
+        right: 0;
+        opacity: 1;
+    }  
+}
+
+
