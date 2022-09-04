@@ -9,6 +9,11 @@
         width: 80%;
         margin-right: $indent;
         position: relative;
+        @media screen and (max-width: 568px) {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: $indent;
+        }   
         &::after {
             content: "";
             display: block;
@@ -28,7 +33,10 @@
         padding: 0 $baseSize*5;
         position: relative;
     }
-    
+    @media screen and (max-width: 568px) {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 

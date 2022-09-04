@@ -1,7 +1,10 @@
 .header {
   padding: 16px 60px;
   background-color: rgb(255, 255, 255);
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,14 +12,23 @@
 }
 .header__main-info {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+}
+.header__text-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 .header__title {
   font-size: 54px;
   font-weight: 500;
-  line-height: 40px;
+  line-height: 1;
   letter-spacing: -2px;
   color: rgb(95, 46, 234);
+}
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .header__title {
+    font-size: 27px;
+  }
 }
 .header__link {
   font-size: 18px;
@@ -24,12 +36,33 @@
   color: rgb(168, 139, 251);
   text-decoration: none;
 }
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .header__link {
+    font-size: 10px;
+  }
+}
 .header__profile {
   display: flex;
+  align-items: center;
 }
 .header__user {
   color: rgb(95, 46, 234);
   font-size: 18px;
+}
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .header__logo {
+    height: 40px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .header {
+    padding: 16px 30px;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .header {
+    padding: 8px;
+  }
 }
 
 .modal {
@@ -54,6 +87,11 @@
   border: none;
   font-size: 18px;
 }
+@media screen and (max-width: 568px) {
+  .form-button {
+    width: 100%;
+  }
+}
 
 .user-form {
   background: rgb(255, 255, 255);
@@ -69,18 +107,17 @@
 }
 .user-form__title {
   text-align: center;
-  font-size: 36px;
+  font-size: 2rem;
   color: rgb(78, 75, 102);
   font-weight: 700;
-  line-height: 36px;
+  line-height: 2rem;
 }
 .user-form__description {
   text-align: center;
   margin-top: 16px;
   color: rgb(78, 75, 102);
   font-weight: 400;
-  font-size: 18px;
-  line-height: 18px;
+  line-height: 1rem;
 }
 .user-form__input-wrapper {
   margin: 32px 0;
@@ -142,26 +179,25 @@
   transform: translate(0, -100%) scale(0.7);
 }
 
-.container {
-  width: 1140px;
-  margin: 0 auto;
-}
-
 .list-section {
-  margin-top: 32px;
+  padding: 32px 0;
+}
+@media screen and (max-width: 568px) {
+  .list-section {
+    padding: 16px 0;
+  }
 }
 
 .subtitle {
-  font-size: 18px;
   color: rgb(78, 75, 102);
   font-weight: 600;
 }
 
 .title {
-  font-size: 54px;
+  font-size: 3rem;
   color: rgb(255, 255, 255);
   font-weight: 700;
-  line-height: 54px;
+  line-height: 3rem;
 }
 
 .list {
@@ -179,10 +215,15 @@
   align-items: center;
   margin-top: 16px;
 }
+@media screen and (max-width: 568px) {
+  .task-wrapper {
+    margin-top: 8px;
+  }
+}
 
 .task-checkbox {
-  width: 33px;
-  height: 33px;
+  min-width: 33px;
+  min-height: 33px;
   border-radius: 16px;
   background: rgb(168, 139, 251);
   margin-right: 16px;
@@ -218,7 +259,7 @@
 .task {
   position: relative;
   list-style: none;
-  font-size: 27px;
+  font-size: 1.5rem;
   color: rgb(255, 255, 255);
   transition: color 0.3s ease-in-out;
 }
@@ -260,6 +301,13 @@
   margin-right: 16px;
   position: relative;
 }
+@media screen and (max-width: 568px) {
+  .task-form__input-wrapper {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+}
 .task-form__input-wrapper::after {
   content: "";
   display: block;
@@ -285,14 +333,48 @@
   padding: 0 30px;
   position: relative;
 }
+@media screen and (max-width: 568px) {
+  .task-form {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
 * {
   box-sizing: border-box;
-  font-family: Poppins;
   margin: 0;
   padding: 0;
 }
 
-body {
+html {
+  font-family: Poppins;
+  font-size: 18px;
+}
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  html {
+    font-size: 13.5px;
+  }
+}
+
+.container {
+  width: 1140px;
+  margin: 0 auto;
+}
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 100%;
+    padding: 0 32px;
+  }
+}
+
+.page {
+  min-height: 100vh;
+  height: 100%;
+  padding-top: 113px;
   background: linear-gradient(0deg, #14142B, #14142B);
+}
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .page {
+    padding-top: 59px;
+  }
 }

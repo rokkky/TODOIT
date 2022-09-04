@@ -1,25 +1,22 @@
 @use 'variables' as *;
 
-.container {
-    width: 1140px;
-    margin: 0 auto;
-}
-
 .list-section {
-    margin-top: $indent*2;
+    padding: $indent*2 0;
+    @media screen and (max-width: 568px) {
+        padding: $indent 0;
+    }  
 }
 
 .subtitle {
-    font-size: $font-sizeMain;
     color: $TextSecondColor;
     font-weight: 600;
 }
 
 .title {
-    font-size: $font-sizeMain * 3;
+    font-size: 3rem;
     color: $colorSecondary;
     font-weight: 700;
-    line-height: $font-sizeMain * 3;
+    line-height: 3rem;
 }
 
 .list {

@@ -21,6 +21,9 @@
     padding: 0 $indent*4 0 $indent*4;
     border: none;
     font-size: 18px;
+    @media screen and (max-width: 568px) {
+        width: 100%;
+    }  
 }
 .user-form {
     background: $colorSecondary;
@@ -35,18 +38,17 @@
     }
     &__title {
         text-align: center;
-        font-size: $font-sizeMain*2;
+        font-size: 2rem;
         color: $TextSecondColor;
         font-weight: 700;
-        line-height: $font-sizeMain*2;
+        line-height: 2rem;
     }
     &__description {
         text-align: center;
         margin-top: $indent;
         color: $TextSecondColor;
         font-weight: 400;
-        font-size: $font-sizeMain;
-        line-height: $font-sizeMain;
+        line-height: 1rem;
     }
     &__input-wrapper {
         margin: $indent*2 0;

@@ -5,12 +5,15 @@
     width: 100%;
     display: flex;
     align-items: center;
-    margin-top: $indent;
+    margin-top: $indent;  
+    @media screen and (max-width: 568px) {
+        margin-top: $indent*0.5;
+    }  
 }
 
 .task-checkbox {    
-    width: $baseSize * 5.5;
-    height: $baseSize * 5.5;
+    min-width: $baseSize * 5.5;
+    min-height: $baseSize * 5.5;
     border-radius: $borderRadiusMain;
     background: $subColor;
     margin-right: $indent;
@@ -46,7 +49,7 @@
 .task {
     position: relative;
     list-style: none;
-    font-size: $font-sizeMain * 1.5;
+    font-size: 1.5rem;
     color: $colorSecondary;
     transition: color 0.3s ease-in-out;
     &::after {
@@ -61,7 +64,7 @@
         left: 0;
         right: 0;
         opacity: 1;
-    }  
+    }
 }
 
 
