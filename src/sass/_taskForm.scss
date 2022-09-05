@@ -16,7 +16,6 @@
         }   
         &::after {
             content: "";
-            display: block;
             width: $baseSize*2;
             height: $baseSize*2;
             background: center / contain url(../images/clear.svg);
@@ -32,6 +31,9 @@
         @include inputBasic;
         padding: 0 $baseSize*5;
         position: relative;
+        @media screen and (min-width: 320px) and (max-width: 480px) {
+            font-size: 14px;
+        }  
     }
     @media screen and (max-width: 568px) {
         flex-direction: column;

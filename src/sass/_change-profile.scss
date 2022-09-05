@@ -1,0 +1,47 @@
+@use 'variables' as *;
+
+.header__profile-change {
+    display: none;
+    opacity: 0;    
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: $baseSize*10;
+    bottom: -$baseSize*5;
+    height: $baseSize*10;
+    background: $colorSecondary;
+    border-radius: $borderRadiusMain;
+    padding: $indent $indent*2;
+    color: $colorPrimary;
+    box-shadow: $box-shadow;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+        .header__user-icon {
+            margin-right: $indent;
+        }
+        &::after {
+        content: "";
+        width: $baseSize*2;
+        height: $baseSize*2;
+        background: center/contain no-repeat url(../images/link-icon.svg);
+        position: absolute;
+        top: 50%;
+        right: $indent;
+        transform: translate(0, -50%);
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out
+        }
+        &:hover {
+            color: $subColor;
+        }
+        &:hover::after {
+            transform: translate(30%, -50%);
+        }
+        @media screen and (max-width: 1200px) {
+            right: $baseSize*5;
+        }  
+        @media screen and (min-width: 320px) and (max-width: 480px) {
+            right: $indent*0.5;
+            bottom: -$indent*3;
+        }  
+}

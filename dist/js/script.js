@@ -1,5 +1,4 @@
-/* (function() {
-const USER_NAME = prompt('Enter your name');
+let USER_NAME;
 const URL = 'https://jsfeajax.herokuapp.com/';
 
 window.DataService = {
@@ -7,53 +6,61 @@ window.DataService = {
 }
 
 async function sendRequest (body, path = '/todo', method = 'POST',) {
-    let response = await fetch(URL+USER_NAME+path, {
+    let response = await fetch(URL+ USER_NAME +path, {
         method: method,
         headers: {'Content-Type': 'application/json;charset=utf-8'}, 
         body: JSON.stringify(body)
     })
     let data = await response.json();
     return data;
-};
-})(); */
-/* "use strict"
-const $taskArea = document.getElementById('taskArea');
-const $button = document.getElementById('taskButton');
-document.addEventListener('DOMContentLoaded', () => new TaskList);
-let i;
+    };
+const $taskArea = document.getElementById('taskFormInput');
+const $taskButton = document.getElementById('taskFormButton');
 
 class Task { 
-	template = document.createElement('li');
+	currentTemplate = document.createElement('div');
+	checkbox = document.createElement('div');
+	taskText = document.createElement('li');
 	constructor(task) {
 		this.text = task.text;
 		this.id = task.id;
-		this.status = task.status; 
+		this.status = task.status;
+		this.list = List;
+		this.taskText.classList.add('task');
+		this.checkbox.classList.add('task-checkbox');
+		this.currentTemplate.classList.add('task-wrapper');
+		this.currentTemplate.append(this.checkbox, this.taskText); 
 		this.handleTaskEvent(); 
 	};
-
 	renderTask() {
-		this.template.className = `${this.status}`;
-		this.template.id = `${this.id}`;
-		this.template.innerHTML = this.text;
-		return this.template;
+		if(this.status === 'complete' && !this.taskText.classList.contains('task_completed')) {
+			this.checkbox.classList.add('task-checkbox_completed');
+			this.taskText.classList.add('task_completed'); 
+		}
+		this.currentTemplate.id = `${this.id}`;
+		this.taskText.innerHTML = this.text;
+		return this.currentTemplate;
 	};
 
 	async updateTaskStatus() {
-		this.status = 'complete'; 
-		DataService.sendRequest(this);
+		this.status = 'complete';
+		this.checkbox.classList.add('task-checkbox_completed');
+		this.taskText.classList.add('task_completed'); 
+		DataService.sendRequest({text: this.text, id: this.id, status: this.status});
+		this.currentTemplate.remove();
+		this.list.completeTemplate.append(this.currentTemplate);
 	};
 
 	deleteTask() {
-		DataService.sendRequest(this, '/todo/delete');
-		this.template.remove();
+		DataService.sendRequest({text: this.text, id: this.id, status: this.status}, '/todo/delete');
+		this.currentTemplate.remove();
 	};
 
 	handleTaskEvent() {
-		document.addEventListener('click', (e) => this.handleTaskClick(e));
+		this.currentTemplate.addEventListener('click', (e) => this.handleTaskClick(e));
 	};
 
-	handleTaskClick(e) {
-		if (e.target === this.template) {
+	handleTaskClick() {
 			if (this.status === 'new') {
 				this.updateTaskStatus();
 				this.renderTask();
@@ -61,22 +68,28 @@ class Task {
 				this.deleteTask();
 				this.renderTask();
 			}
-		}
 	};
 };
 
 class TaskList { 
 	constructor() {
-		this.template = document.getElementById('todoList');
+		this.currentTemplate = document.getElementById('list_current');
+		this.completeTemplate = document.getElementById('list_completed');
 		this.listData;
 		this.initList();
 		this.handleListEvent();
 	};
 
 	renderList() {
-		this.template.innerHTML = '';
+		this.currentTemplate.innerHTML = '';
+		this.completeTemplate.innerHTML = '';
 		this.listData.forEach(elem => {
-			this.template.append(new Task(elem).renderTask());	
+			if (elem.status === 'new') {
+				this.currentTemplate.append(new Task(elem).renderTask());
+			} else {
+				this.completeTemplate.append(new Task(elem).renderTask());
+			}
+				
 		});
 	};
 
@@ -87,26 +100,31 @@ class TaskList {
 
 	async addTask(e) {
 		e.preventDefault();
-		if (e.target === $button) {
-			if (!$taskArea.value.length) {
+		if (e.target === $taskButton) {
+			/* if (!$taskArea.value.length) {
 				document.getElementById('feedback').textContent = 'Enter a task and try again';
-			} else {
+			} */ 
 				this.listData = await DataService.sendRequest({text: $taskArea.value});
 				this.renderList();
 				$taskArea.value = '';
-			}
+			
 		}
 	};
 
 	handleListEvent() {
 		document.addEventListener('click', (e) => this.addTask(e));
 	};
-}; */
-const $nameLabel = document.getElementById('user-form__input-label');
-const $nameInput = document.getElementById('user-form__input');
+};
+const $nameLabel = document.getElementById('userFormInputLabel');
+const $nameInput = document.getElementById('userFormInput');
+const $nameButton = document.getElementById('userFormButton');
+const $userNameHeader = document.getElementById('userNameHeader');
+const $modal = document.getElementById('modal');
+let List;
 
 document.addEventListener('focus', inputOnFocus, true);
 document.addEventListener('blur', inputOnBlur, true);
+document.addEventListener('click', submitUser)
 
 function inputOnFocus(e) {
     if (e.target == $nameInput) {
@@ -126,5 +144,15 @@ function inputOnBlur(e) {
             $nameLabel.classList.remove('user-form__input-label_active');
             $nameLabel.style.opacity = '1'
         }
+    }
+}
+
+function submitUser (e) {
+    if (e.target == $nameButton && $nameInput.value) {
+        e.preventDefault();
+        USER_NAME = $nameInput.value;
+        $userNameHeader.textContent = USER_NAME;
+        $modal.classList.add('hidden');
+        List = new TaskList;
     }
 }

@@ -4,6 +4,8 @@
 .modal {
     background:  center / cover no-repeat url('../images/modal-background.png');
     position: fixed;
+    display: none;
+    opacity: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,6 +14,7 @@
     right: 0;
     left: 0;
     z-index: 9;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s;
 }
 .form-button {
     height: $baseSize*11;
@@ -33,6 +36,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: opacity 1s ease-in-out;
     & * {
         width: 100%;
     }
