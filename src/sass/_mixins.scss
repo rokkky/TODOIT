@@ -8,7 +8,9 @@
     height: $baseSize*11;
     border-radius: $borderRadiusMain;
     background-color: rgba(239, 240, 246, 1);
-    border: 0px solid $colorPrimary;
+    &:focus-visible {
+        outline: 2px solid $colorPrimary;
+    }
 }
 
 @mixin crossing {

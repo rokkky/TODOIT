@@ -13,18 +13,6 @@
             width: 100%;
             margin-right: 0;
             margin-bottom: $indent;
-        }   
-        &::after {
-            content: "";
-            width: $baseSize*2;
-            height: $baseSize*2;
-            background: center / contain url(../images/clear.svg);
-            position: absolute;
-            top: 50%;
-            right: 16px;
-            transform: translate(0, -50%);
-            z-index: 2;
-            cursor: pointer;
         }
     }
     &__input {
@@ -34,6 +22,10 @@
         @media screen and (min-width: 320px) and (max-width: 480px) {
             font-size: 14px;
         }  
+    }
+    &_error {
+        color: $colorSecondary;
+        padding: $indent 0;
     }
     @media screen and (max-width: 568px) {
         flex-direction: column;

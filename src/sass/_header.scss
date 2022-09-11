@@ -23,7 +23,7 @@
         font-size: $font-sizeMain*3;
         font-weight: 500;
         line-height: 1;
-        letter-spacing: -2px;
+        letter-spacing: -10px;
         color: $colorPrimary;
         @media screen and (min-width: 320px) and (max-width: 480px){
             font-size: $font-sizeMain*1.5;
@@ -60,6 +60,7 @@
     &__profile {
         display: flex;
         align-items: center;
+        cursor: pointer;
     }
     &__user {
         color: $colorPrimary;

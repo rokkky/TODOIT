@@ -5,10 +5,36 @@
     width: 100%;
     display: flex;
     align-items: center;
-    margin-top: $indent;  
+    margin-top: $indent;
+    cursor: pointer;
+    animation: show .5s ease-in-out;
     @media screen and (max-width: 568px) {
         margin-top: $indent*0.5;
-    }  
+    }
+    &:hover > .task-checkbox{
+        background: $colorPrimary;
+    }
+    &:hover > .task{
+        color: $TextSecondColor;
+    }
+    &:hover > .task::after{
+        left: 0;
+        right: 0;
+        opacity: 1;
+    }
+    &_completed {
+        &:hover > .task_completed{
+            color: $colorSecondary;
+        }
+        &:hover > .task_completed::after{
+            opacity: 0; 
+            left: 30%;
+            right: 70%;
+        }
+        &:hover > .task-checkbox_completed {
+            background: $colorFocus center / 50% no-repeat url("../images/check-icon.svg");
+        }
+    }   
 }
 
 .task-checkbox {    
@@ -18,32 +44,11 @@
     background: $subColor;
     margin-right: $indent;
     transition: background 0.3s ease-in-out;
-    &:hover {
-        background: $colorPrimary;
-    }
-    &:hover + .task{
-        color: $TextSecondColor;
-    }
-    &:hover + .task::after{
-        left: 0;
-        right: 0;
-        opacity: 1;
-    } 
+    
 } 
 
 .task-checkbox_completed {
     background: $colorPrimary center / 50% no-repeat url("../images/check-icon.svg");
-    &:hover {
-        background: $colorFocus center / 50% no-repeat url("../images/check-icon.svg");
-    }
-    &:hover + .task_completed::after {
-        opacity: 0; 
-        left: 30%;
-        right: 70%;
-    }
-    &:hover + .task_completed {
-        color: $colorSecondary;
-    }
 }
 
 .task {
@@ -67,4 +72,11 @@
     }
 }
 
-
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

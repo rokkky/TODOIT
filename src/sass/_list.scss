@@ -1,7 +1,7 @@
 @use 'variables' as *;
 
 .list-section {
-    padding: $indent*2 0;
+    padding: $indent*2 0 0;
     @media screen and (max-width: 568px) {
         padding: $indent 0;
     }  
@@ -28,4 +28,7 @@
     justify-content: flex-end;
 }
 
-
+.empty-list {
+    color: $colorSecondary;
+    font-size: $font-sizeMain;
+}

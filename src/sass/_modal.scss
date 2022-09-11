@@ -22,7 +22,6 @@
     background: $colorPrimary;
     border-radius: $borderRadiusMain;
     padding: 0 $indent*4 0 $indent*4;
-    border: none;
     font-size: 18px;
     @media screen and (max-width: 568px) {
         width: 100%;
@@ -70,18 +69,6 @@
         transform: translate(0, -50%);
         z-index: 2;
     }
-    &__input-wrapper::after {
-        content: "";
-        width: $baseSize*2;
-        height: $baseSize*2;
-        background: center / contain url(../images/clear.svg);
-        position: absolute;
-        top: 50%;
-        right: 16px;
-        transform: translate(0, -50%);
-        z-index: 2;
-        cursor: pointer;
-    }
     &__input-label {
         transform-origin: top left;
         pointer-events: none;
@@ -99,9 +86,6 @@
         width: 100%;
         padding: 0 $baseSize*5 0 $baseSize*10; 
         position: relative;
-    }
-    &__input_focus {
-        border: 2px solid $colorPrimary;
     }
     &__input-label_active {
         transform: translate(0, -100%) scale(0.7);

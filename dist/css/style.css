@@ -22,7 +22,7 @@
   font-size: 54px;
   font-weight: 500;
   line-height: 1;
-  letter-spacing: -2px;
+  letter-spacing: -10px;
   color: rgb(95, 46, 234);
 }
 @media screen and (min-width: 320px) and (max-width: 480px) {
@@ -63,6 +63,7 @@
 .header__profile {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .header__user {
   color: rgb(95, 46, 234);
@@ -106,7 +107,6 @@
   background: rgb(95, 46, 234);
   border-radius: 16px;
   padding: 0 64px 0 64px;
-  border: none;
   font-size: 18px;
 }
 @media screen and (max-width: 568px) {
@@ -158,18 +158,6 @@
   transform: translate(0, -50%);
   z-index: 2;
 }
-.user-form__input-wrapper::after {
-  content: "";
-  width: 12px;
-  height: 12px;
-  background: center/contain url(../images/clear.svg);
-  position: absolute;
-  top: 50%;
-  right: 16px;
-  transform: translate(0, -50%);
-  z-index: 2;
-  cursor: pointer;
-}
 .user-form__input-label {
   transform-origin: top left;
   pointer-events: none;
@@ -190,20 +178,19 @@
   height: 66px;
   border-radius: 16px;
   background-color: rgb(239, 240, 246);
-  border: 0px solid rgb(95, 46, 234);
   width: 100%;
   padding: 0 30px 0 60px;
   position: relative;
 }
-.user-form__input_focus {
-  border: 2px solid rgb(95, 46, 234);
+.user-form__input:focus-visible {
+  outline: 2px solid rgb(95, 46, 234);
 }
 .user-form__input-label_active {
   transform: translate(0, -100%) scale(0.7);
 }
 
 .list-section {
-  padding: 32px 0;
+  padding: 32px 0 0;
 }
 @media screen and (max-width: 568px) {
   .list-section {
@@ -232,16 +219,45 @@
   justify-content: flex-end;
 }
 
+.empty-list {
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+}
+
 .task-wrapper {
   width: 100%;
   display: flex;
   align-items: center;
   margin-top: 16px;
+  cursor: pointer;
+  animation: show 0.5s ease-in-out;
 }
 @media screen and (max-width: 568px) {
   .task-wrapper {
     margin-top: 8px;
   }
+}
+.task-wrapper:hover > .task-checkbox {
+  background: rgb(95, 46, 234);
+}
+.task-wrapper:hover > .task {
+  color: rgb(78, 75, 102);
+}
+.task-wrapper:hover > .task::after {
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+.task-wrapper_completed:hover > .task_completed {
+  color: rgb(255, 255, 255);
+}
+.task-wrapper_completed:hover > .task_completed::after {
+  opacity: 0;
+  left: 30%;
+  right: 70%;
+}
+.task-wrapper_completed:hover > .task-checkbox_completed {
+  background: rgb(42, 0, 162) center/50% no-repeat url("../images/check-icon.svg");
 }
 
 .task-checkbox {
@@ -252,31 +268,9 @@
   margin-right: 16px;
   transition: background 0.3s ease-in-out;
 }
-.task-checkbox:hover {
-  background: rgb(95, 46, 234);
-}
-.task-checkbox:hover + .task {
-  color: rgb(78, 75, 102);
-}
-.task-checkbox:hover + .task::after {
-  left: 0;
-  right: 0;
-  opacity: 1;
-}
 
 .task-checkbox_completed {
   background: rgb(95, 46, 234) center/50% no-repeat url("../images/check-icon.svg");
-}
-.task-checkbox_completed:hover {
-  background: rgb(42, 0, 162) center/50% no-repeat url("../images/check-icon.svg");
-}
-.task-checkbox_completed:hover + .task_completed::after {
-  opacity: 0;
-  left: 30%;
-  right: 70%;
-}
-.task-checkbox_completed:hover + .task_completed {
-  color: rgb(255, 255, 255);
 }
 
 .task {
@@ -314,6 +308,14 @@
   opacity: 1;
 }
 
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .task-form {
   display: flex;
   align-items: flex-end;
@@ -331,18 +333,6 @@
     margin-bottom: 16px;
   }
 }
-.task-form__input-wrapper::after {
-  content: "";
-  width: 12px;
-  height: 12px;
-  background: center/contain url(../images/clear.svg);
-  position: absolute;
-  top: 50%;
-  right: 16px;
-  transform: translate(0, -50%);
-  z-index: 2;
-  cursor: pointer;
-}
 .task-form__input {
   font-size: 18px;
   width: 100%;
@@ -351,14 +341,20 @@
   height: 66px;
   border-radius: 16px;
   background-color: rgb(239, 240, 246);
-  border: 0px solid rgb(95, 46, 234);
   padding: 0 30px;
   position: relative;
+}
+.task-form__input:focus-visible {
+  outline: 2px solid rgb(95, 46, 234);
 }
 @media screen and (min-width: 320px) and (max-width: 480px) {
   .task-form__input {
     font-size: 14px;
   }
+}
+.task-form_error {
+  color: rgb(255, 255, 255);
+  padding: 16px 0;
 }
 @media screen and (max-width: 568px) {
   .task-form {
@@ -419,12 +415,13 @@
 
 * {
   box-sizing: border-box;
+  border: none;
   margin: 0;
   padding: 0;
 }
 
 html {
-  font-family: Poppins;
+  font-family: "Montserrat", sans-serif;
   font-size: 18px;
 }
 @media screen and (min-width: 320px) and (max-width: 480px) {
